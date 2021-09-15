@@ -4,7 +4,9 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 // import HolaMundoScreen from './src/screens/HolaMundoScreen';
 // import { BoxObjectModelScreen } from './src/screens/BoxObjectModelScreen';
 // import { DimensionesScreen } from './src/screens/DimensionesScreen';
-import { PositionScreen } from './src/screens/PositionScreen';
+// import { PositionScreen } from './src/screens/PositionScreen';
+// import { FlexScreen } from './src/screens/FlexScreen';
+import { TareaScreen } from './src/screens/TareaScreen';
 
 const App = () => {
   // return <HolaMundoScreen />;
@@ -15,7 +17,9 @@ const App = () => {
     <SafeAreaView style={styles.parent}>
       {/* <BoxObjectModelScreen /> */}
       {/* <DimensionesScreen /> */}
-      <PositionScreen />
+      {/* <PositionScreen /> */}
+      {/* <FlexScreen /> */}
+      <TareaScreen />
     </SafeAreaView>
   );
 };
