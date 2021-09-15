@@ -3,7 +3,8 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 // import ContadorScreen from './src/screens/ContadorScreen';
 // import HolaMundoScreen from './src/screens/HolaMundoScreen';
 // import { BoxObjectModelScreen } from './src/screens/BoxObjectModelScreen';
-import { DimensionesScreen } from './src/screens/DimensionesScreen';
+// import { DimensionesScreen } from './src/screens/DimensionesScreen';
+import { PositionScreen } from './src/screens/PositionScreen';
 
 const App = () => {
   // return <HolaMundoScreen />;
@@ -13,7 +14,8 @@ const App = () => {
     // notch: parte donde esta el parlante y sensor de proximidad
     <SafeAreaView style={styles.parent}>
       {/* <BoxObjectModelScreen /> */}
-      <DimensionesScreen />
+      {/* <DimensionesScreen /> */}
+      <PositionScreen />
     </SafeAreaView>
   );
 };
