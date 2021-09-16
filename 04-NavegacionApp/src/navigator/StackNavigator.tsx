@@ -3,8 +3,18 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Page1Screen} from '../screens/Page1Screen';
 import {Page2Screen} from '../screens/Page2Screen';
 import {Page3Screen} from '../screens/Page3Screen';
+import {PersonScreen} from '../screens/PersonScreen';
 
-const Stack = createStackNavigator();
+// creado por mi, le podes poner el tipo de params q recibe una pagina
+export type RootStackParams = {
+  Page1Screen: undefined; // si no recibe nada, poner undefined
+  Page2Screen: undefined;
+  Page3Screen: undefined;
+  PersonScreen: {id: number; nombre: string}; // hacer una interface, es un ejemplo nomas
+};
+
+// no olvidar de tipar aca con el type de arriba y listo, todo el stack tipado
+const Stack = createStackNavigator<RootStackParams>();
 
 export const StackNavigator = () => {
   return (
@@ -36,6 +46,11 @@ export const StackNavigator = () => {
         name="Page3Screen"
         options={{title: 'Pagina 3'}}
         component={Page3Screen}
+      />
+      <Stack.Screen
+        name="PersonScreen"
+        options={{title: 'Person'}}
+        component={PersonScreen}
       />
     </Stack.Navigator>
   );
