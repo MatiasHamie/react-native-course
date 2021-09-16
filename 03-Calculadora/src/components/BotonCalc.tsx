@@ -11,16 +11,17 @@ type Props = {
   text: string;
   color?: string;
   wide?: boolean;
+  action: (pressedButtonText: string) => void;
 };
 
-export const BotonCalc: FC<Props> = ({text, color, wide}) => {
+export const BotonCalc: FC<Props> = ({text, color, wide, action}) => {
   // esto es porque en algunos dispositivos no tomaba bien las medidas
   // y quedaba todo pegado al borde
   const {width} = useWindowDimensions();
   return (
     // recordar que el touchableOpacity era para el efecto al presionar
     // y que no se usa un button, se usa ese touchable
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => action(text)}>
       <View style={styles({color, wide} as Props, width).button}>
         <Text style={styles({color, wide} as Props).buttonText}>{text}</Text>
       </View>
