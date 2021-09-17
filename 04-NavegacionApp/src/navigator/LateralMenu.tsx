@@ -4,7 +4,7 @@ import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
-import {StackNavigator} from './StackNavigator';
+// import {StackNavigator} from './StackNavigator';
 import {SettingsScreen} from '../screens/SettingsScreen';
 import {
   Image,
@@ -14,6 +14,7 @@ import {
   View,
 } from 'react-native';
 import {styles} from '../theme/AppTheme';
+import {Tabs} from './Tabs';
 
 const Drawer = createDrawerNavigator();
 
@@ -21,18 +22,17 @@ export const LateralMenu = () => {
   const {width} = useWindowDimensions();
   return (
     <Drawer.Navigator
-      screenOptions={{drawerType: width >= 768 ? 'permanent' : 'front'}}
+      screenOptions={{
+        drawerType: width >= 768 ? 'permanent' : 'front',
+        headerShown: false,
+      }}
       // Como todavia no estan renderizados los navigators (aca los estamos definiendo)
       // la unica forma de pasarle propiedades de navegacion a la pantalla lateral
       // es pasarselas de esta forma con los callbacks y props
       drawerContent={(props: DrawerContentComponentProps) => (
         <LateralMenuContent {...props} />
       )}>
-      <Drawer.Screen
-        name="StackNavigator"
-        options={{title: 'Home'}}
-        component={StackNavigator}
-      />
+      <Drawer.Screen name="Tabs" options={{title: 'Home'}} component={Tabs} />
       <Drawer.Screen
         name="SettingsScreen"
         options={{title: 'Settings'}}
