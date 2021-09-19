@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import {Text, View} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {SafeAreaView, Text} from 'react-native';
+import {TouchableIcon} from '../components/TouchableIcon';
 import {styles} from '../theme/AppTheme';
 
 export const Tab1Screen = () => {
@@ -8,11 +8,17 @@ export const Tab1Screen = () => {
     console.log('Tab1Screen');
   }, []);
   return (
-    <View style={styles.globalMargin}>
+    <SafeAreaView style={styles.globalMargin}>
       <Text style={styles.title}>Iconos</Text>
       <Text>
-        <Icon name="bonfire-outline" size={30} color="#900" />
+        <TouchableIcon iconName="attach-outline" />
+        <TouchableIcon iconName="airplane-outline" />
+        <TouchableIcon iconName="bonfire-outline" />
+        <TouchableIcon iconName="calculator-outline" />
+        <TouchableIcon iconName="chatbubble-ellipses-outline" />
+        <TouchableIcon iconName="images-outline" />
+        <TouchableIcon iconName="leaf-outline" />
       </Text>
-    </View>
+    </SafeAreaView>
   );
 };
