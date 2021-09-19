@@ -2,9 +2,13 @@
 import React, {useEffect} from 'react';
 import {Button, Text, View} from 'react-native';
 // import {StackScreenProps} from '@react-navigation/stack';
-import {styles} from '../theme/AppTheme';
+import {colors, styles} from '../theme/AppTheme';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {DrawerScreenProps} from '@react-navigation/drawer';
+// prestar atencion a como se importa
+// ya q en el icon normal q importa por defecto
+// tenes a aclarar cual queres usar, aca solo usamos una y listo
+import Icon from 'react-native-vector-icons/Ionicons';
 
 // interface Props extends StackScreenProps<any, any> {}
 // tiene casi lo mismo q el stackScreenProps, lo importo para poder hacer el toggle del menu lateral
@@ -18,7 +22,11 @@ export const Page1Screen = ({navigation}: Props) => {
     navigation.setOptions({
       headerLeft: () => {
         return (
-          <Button title="Menu Lat" onPress={() => navigation.toggleDrawer()} />
+          <TouchableOpacity
+            style={{marginLeft: 10}}
+            onPress={() => navigation.toggleDrawer()}>
+            <Icon name="menu-outline" color={colors.primary} size={35} />
+          </TouchableOpacity>
         );
       },
     });
@@ -40,6 +48,7 @@ export const Page1Screen = ({navigation}: Props) => {
             // se reciben en route.params.objetoQueMando
             navigation.navigate('PersonScreen', {id: 1, nombre: 'Pedro'})
           }>
+          <Icon name="body-outline" color="white" size={30} />
           <Text style={styles.bigButtonText}>Pedro</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -49,6 +58,7 @@ export const Page1Screen = ({navigation}: Props) => {
             // se reciben en route.params.objetoQueMando
             navigation.navigate('PersonScreen', {id: 2, nombre: 'Maria'})
           }>
+          <Icon name="woman-outline" color="white" size={30} />
           <Text style={styles.bigButtonText}>Maria</Text>
         </TouchableOpacity>
       </View>

@@ -2,17 +2,71 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Tab1Screen} from '../screens/Tab1Screen';
-import {Tab2Screen} from '../screens/Tab2Screen';
+// import {Tab2Screen} from '../screens/Tab2Screen';
 // import {Tab3Screen} from '../screens/Tab3Screen';
 import {StackNavigator} from './StackNavigator';
 import {colors} from '../theme/AppTheme';
-import {Text} from 'react-native';
-
-const Tab = createBottomTabNavigator();
+import {Platform} from 'react-native';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {TopTabNavigator} from './TopTabNavigator';
+// prestar atencion a como se importa
+// ya q en el icon normal q importa por defecto
+// tenes a aclarar cual queres usar, aca solo usamos una y listo
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export const Tabs = () => {
+  return Platform.OS === 'ios' ? <TabsIOS /> : <TabsAndroid />;
+};
+
+const BottomTabAndroid = createMaterialBottomTabNavigator();
+const TabsAndroid = () => {
   return (
-    <Tab.Navigator
+    <BottomTabAndroid.Navigator
+      sceneAnimationEnabled={true}
+      barStyle={{backgroundColor: colors.primary}}
+      screenOptions={({route}) => ({
+        headerShown: false,
+        // ojo q en materialtabs no hay size en las props
+        // que recibe el tabBarIcon
+        tabBarIcon: ({color}) => {
+          let iconName: string = '';
+          switch (route.name) {
+            case 'Tab1Screen':
+              iconName = 'bandage-outline';
+              break;
+            case 'Tab2Screen':
+              iconName = 'basketball-outline';
+              break;
+            case 'StackNavigator':
+              iconName = 'bookmarks-outline';
+              break;
+          }
+          return <Icon name={iconName} size={20} color={color} />;
+        },
+      })}>
+      <BottomTabAndroid.Screen
+        name="Tab1Screen"
+        options={{title: 'tab1'}}
+        component={Tab1Screen}
+      />
+      <BottomTabAndroid.Screen
+        name="Tab2Screen"
+        options={{title: 'tab2'}}
+        component={TopTabNavigator}
+      />
+      {/* como vemos, se puede usar otro navigator en una tab */}
+      <BottomTabAndroid.Screen
+        name="StackNavigator"
+        component={StackNavigator}
+      />
+    </BottomTabAndroid.Navigator>
+  );
+};
+
+const BottomTabsIOS = createBottomTabNavigator();
+const TabsIOS = () => {
+  return (
+    <BottomTabsIOS.Navigator
       sceneContainerStyle={{
         // el color de fondo de pantalla de la pantalla q esta apareciendo
         // esto NO cambia las pantallas q aparezcan al tocar una tab
@@ -22,23 +76,24 @@ export const Tabs = () => {
       }}
       // propiedades globales de las tabs
       screenOptions={({route}) => ({
+        headerShown: false,
         // creando/editando el icono
         tabBarIcon: ({color}) => {
           let iconName: string = '';
           switch (route.name) {
             case 'Tab1Screen':
-              iconName = 'T1';
+              iconName = 'bandage-outline';
               break;
             case 'Tab2Screen':
-              iconName = 'T2';
+              iconName = 'basketball-outline';
               break;
             case 'StackNavigator':
-              iconName = 'ST';
+              iconName = 'bookmarks-outline';
               break;
           }
           // color del padre al icono de la tab
           // color: color === color en ES6 (por eso esta asi)
-          return <Text style={{color}}>{iconName}</Text>;
+          return <Icon name={iconName} size={20} color={color} />;
         },
         tabBarActiveTintColor: colors.primary,
         tabBarStyle: {
@@ -51,7 +106,7 @@ export const Tabs = () => {
           fontSize: 15,
         },
       })}>
-      <Tab.Screen
+      <BottomTabsIOS.Screen
         name="Tab1Screen"
         options={{
           title: 'tab1',
@@ -76,13 +131,13 @@ export const Tabs = () => {
         }}
         component={Tab1Screen}
       /> */}
-      <Tab.Screen
+      <BottomTabsIOS.Screen
         name="Tab2Screen"
         options={{title: 'tab2'}}
-        component={Tab2Screen}
+        component={TopTabNavigator}
       />
       {/* como vemos, se puede usar otro navigator en una tab */}
-      <Tab.Screen name="StackNavigator" component={StackNavigator} />
-    </Tab.Navigator>
+      <BottomTabsIOS.Screen name="StackNavigator" component={StackNavigator} />
+    </BottomTabsIOS.Navigator>
   );
 };

@@ -15,7 +15,10 @@ import {
 } from 'react-native';
 import {styles} from '../theme/AppTheme';
 import {Tabs} from './Tabs';
-
+// prestar atencion a como se importa
+// ya q en el icon normal q importa por defecto
+// tenes a aclarar cual queres usar, aca solo usamos una y listo
+import Icon from 'react-native-vector-icons/Ionicons';
 const Drawer = createDrawerNavigator();
 
 export const LateralMenu = () => {
@@ -59,14 +62,24 @@ const LateralMenuContent = ({navigation}: DrawerContentComponentProps) => {
       {/* Opciones de menu */}
       <View style={styles.menuContainer}>
         <TouchableOpacity
-          style={styles.menuButton}
+          style={{
+            ...styles.menuButton,
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}
           onPress={() => navigation.navigate('StackNavigator')}>
+          <Icon name="compass-outline" size={22} color="back" />
           <Text style={styles.menuButtonText}>Navegacion Stack</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.menuButton}
+          style={{
+            ...styles.menuButton,
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}
           onPress={() => navigation.navigate('SettingsScreen')}>
+          <Icon name="cog-outline" size={22} color="back" />
           <Text style={styles.menuButtonText}>Ajustes</Text>
         </TouchableOpacity>
       </View>
