@@ -1,17 +1,25 @@
-import {useNavigation} from '@react-navigation/core';
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Button, Text, View} from 'react-native';
+import {ActivityIndicator, View} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {MoviePoster} from '../components/MoviePoster';
+import {useMovies} from '../hooks/useMovies';
 
 export const HomeScreen = () => {
-  const navigation = useNavigation();
-  return (
-    <View>
-      <Text>Home Screen</Text>
+  const {moviesNowPlaying, isLoading} = useMovies();
+  const {top} = useSafeAreaInsets();
 
-      <Button
-        title="Ir a detalle"
-        onPress={() => navigation.navigate('DetailScreen')}
-      />
+  if (isLoading) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <ActivityIndicator color="red" size={100} />
+      </View>
+    );
+  }
+
+  return (
+    <View style={{marginTop: top}}>
+      <MoviePoster movie={moviesNowPlaying[0]} />
     </View>
   );
 };
