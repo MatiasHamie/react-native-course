@@ -10,13 +10,14 @@ import {
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {RootStackParams} from '../navigation/Navigation';
-// import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {useMovieDetails} from '../hooks/useMovieDetails';
 import {MovieDetails} from '../components/MovieDetails';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 interface Props extends StackScreenProps<RootStackParams, 'DetailScreen'> {}
 
-export const DetailScreen = ({route}: Props) => {
+export const DetailScreen = ({route, navigation}: Props) => {
   const movie = route.params;
   const {height: windowHeight} = useWindowDimensions();
   const {movieFull, cast, isLoading} = useMovieDetails(movie.id);
@@ -24,24 +25,32 @@ export const DetailScreen = ({route}: Props) => {
   console.log(movie.id);
 
   return (
-    <ScrollView>
-      <View style={{...styles.imageContainer, height: windowHeight * 0.7}}>
-        <View style={styles.imageBorder}>
-          <Image source={{uri}} style={styles.posterImage} />
+    <>
+      {/* Botón para regresar */}
+      <View style={styles.backButton}>
+        <TouchableOpacity onPress={() => navigation.pop()}>
+          <Icon color="white" name="arrow-back-outline" size={80} />
+        </TouchableOpacity>
+      </View>
+      <ScrollView>
+        <View style={{...styles.imageContainer, height: windowHeight * 0.7}}>
+          <View style={styles.imageBorder}>
+            <Image source={{uri}} style={styles.posterImage} />
+          </View>
         </View>
-      </View>
-
-      <View style={styles.marginContainer}>
-        <Text style={styles.subtitle}>{movie.original_title}</Text>
-        <Text style={styles.title}>{movie.title}</Text>
-      </View>
-
-      {isLoading ? (
-        <ActivityIndicator size={30} color="grey" />
-      ) : (
-        <MovieDetails movieCompleteData={movieFull!} cast={cast} />
-      )}
-    </ScrollView>
+        <View style={styles.marginContainer}>
+          <Text style={styles.subtitle}>{movie.original_title}</Text>
+          <Text style={styles.title}>{movie.title}</Text>
+        </View>
+        {isLoading ? (
+          <ActivityIndicator size={30} color="grey" />
+        ) : (
+          <MovieDetails movieCompleteData={movieFull!} cast={cast} />
+        )}
+        {/* Boton para cerrar */}
+        <Icon color="white" name="arrow-back-outline" size={100} />
+      </ScrollView>
+    </>
   );
 };
 
@@ -70,5 +79,12 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 18,
     opacity: 0.8,
+  },
+  backButton: {
+    position: 'absolute',
+    zIndex: 999,
+    elevation: 9,
+    top: 10,
+    left: 10,
   },
 });
