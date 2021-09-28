@@ -43,6 +43,7 @@
 		ABFE59519B596E51CEFDCCC0 /* libPods-RNComponents-RNComponentsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNComponents-RNComponentsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0A881CF5CF3F2B244570E2A /* Pods-RNComponents.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNComponents.debug.xcconfig"; path = "Target Support Files/Pods-RNComponents/Pods-RNComponents.debug.xcconfig"; sourceTree = "<group>"; };
 		D00AAFFCFCFDA5787532823F /* Pods-RNComponents.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNComponents.release.xcconfig"; path = "Target Support Files/Pods-RNComponents/Pods-RNComponents.release.xcconfig"; sourceTree = "<group>"; };
+		DBA6326627015A610000FC19 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -116,6 +117,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				DBA6325D27015A610000FC19 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* RNComponents */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* RNComponentsTests */,
@@ -137,6 +139,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		DBA6325D27015A610000FC19 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DBA6326627015A610000FC19 /* Ionicons.ttf */,
+			);
+			name = Fonts;
+			path = "../node_modules/react-native-vector-icons/Fonts";
+			sourceTree = "<group>";
+		};
 		E233CBF5F47BEE60B243DCF8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,7 +156,6 @@
 				6C97AB639B58BBB4B15BBE30 /* Pods-RNComponents-RNComponentsTests.debug.xcconfig */,
 				1D0AE47A65C8663E3B452821 /* Pods-RNComponents-RNComponentsTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
